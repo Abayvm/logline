@@ -9,9 +9,13 @@ router.post('/register', async(req, res)=>{
         if(existingUser){
             return res.status(400).json({message : "usrename already exists"});
         }
+        
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         const newUser = new User({
             username,
-            password
+            password : hashedPassword
         })
         await newUser.save();
         res.status(201).json({message : "successfully registered"});
