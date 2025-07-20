@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const jsonWebToken = require('jsonwebtoken');
 const authRoutes = require('./routes/auth');
 const loglistRoutes = require('./routes/loglists');
+const logsRoute = require('./routes/logs');
 const app = express();
 const PORT = 3000;
 
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use('/api/auth', authRoutes);
 app.use('/api/loglists', loglistRoutes);
+app.use('/api/logs', logsRoute);
 
 app.listen(PORT, ()=>{
     console.log(`server online at port${PORT}`);
