@@ -5,6 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jsonWebToken = require('jsonwebtoken');
 const authRoutes = require('./routes/auth');
+const loglistRoutes = require('./routes/loglists');
 const app = express();
 const PORT = 3000;
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGO_URI)
 .catch(err => console.error("MongoDB connection error:", err));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/loglists', loglistRoutes);
 
 app.listen(PORT, ()=>{
     console.log(`server online at port${PORT}`);
