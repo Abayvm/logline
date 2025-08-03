@@ -4,6 +4,7 @@ const slugify = require('slugify');
 const LoglistSchema = new mongoose.Schema({
     topic : {type: String, required: true},
     description: {type: String},
+    slug: { type: String, unique: true },
     author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 },{timestamps: true});
 
